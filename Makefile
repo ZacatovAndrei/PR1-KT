@@ -5,4 +5,5 @@ build:
 clean: 
 	rm Kitchen
 docker:
+	docker rmi zacatov/pr1kitchen
 	docker build -t "zacatov/pr1kitchen" .
