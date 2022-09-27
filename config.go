@@ -6,6 +6,7 @@ const (
 	TimeUnit                     = 2000 * time.Millisecond
 	CookNumber                   = 1
 	MaxFoods                     = 6
+	MaxOrders                    = TableNumber * MaxFoods
 	TableNumber                  = 10
 	LocalAddress                 = ":8087"
 	DiningHallAddress            = "http://DiningHall:8086/distribution"

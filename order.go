@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"log"
 	"math"
 )
@@ -32,11 +33,10 @@ func (o *Order) assignPriority() {
 	o.Priority = int(tempRank)/2 - 1
 }
 
-func (o *Order) decompose() {
+func (o *Order) decompose(RankedLists []*list.List) {
+	var kd KitchenDish
 	for _, item := range o.Items {
-		dishRank := CurrentMenu[item].Complexity
-		switch dishRank {
-
-		}
+		kd = NewKitchenDish(item)
+		RankedLists[kd.info.Complexity-1].PushFront(kd)
 	}
 }

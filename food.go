@@ -15,6 +15,20 @@ type Dish struct {
 	CookingApparatus string `json:"cooking-apparatus"`
 }
 
+type KitchenDish struct {
+	info      Dish
+	cookedFor int
+	ready     bool
+}
+
+func NewKitchenDish(id int) *KitchenDish {
+	kd := new(KitchenDish)
+	kd.info = CurrentMenu[id]
+	kd.ready = false
+	kd.cookedFor = 0
+	return kd
+}
+
 func (m RestaurantMenu) ParseMenu(s string) RestaurantMenu {
 	fin, err := ioutil.ReadFile(s)
 	if err != nil {

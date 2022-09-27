@@ -14,17 +14,19 @@ var (
 	CurrentMenu   RestaurantMenu
 )
 
-// having a list of all the order items sorted by rank
+// having a list of all the order items sorted by ranks
+
 var (
-	R1Dish = make([]Dish, MaxFoods*TableNumber)
-	R2Dish = make([]Dish, MaxFoods*TableNumber)
-	R3Dish = make([]Dish, MaxFoods*TableNumber)
+	RankDish = make([][]KitchenDish, 3)
 )
 
 func main() {
-	//Parsing the Menu file
+	//Parsing the Menu file and initialising other things made by my sick mind
 	CurrentMenu = CurrentMenu.ParseMenu(MenuPath + "menu.json")
 	log.Printf("current menu :\n %+v\n", CurrentMenu)
+	for i := 0; i < 3; i++ {
+		RankDish[i] = make([]KitchenDish, 0, MaxOrders)
+	}
 
 	//Initializing cooks
 	var CookList = make([]Cook, CookNumber)
@@ -55,16 +57,15 @@ func OrderHandler(w http.ResponseWriter, r *http.Request) {
 		panic(ok)
 	}
 	log.Printf("order: %+v pushed into the list\n", o)
+
 	//Assigning the kitchen priority based on the order parameters
 	o.assignPriority()
+
 	//Locking ListAccess mutex in the critical section
 	ListAccess.Lock()
 	OrderList[OrdersPending] = o
-	OrdersPending += 1
+	OrdersPending++
 	ListAccess.Unlock()
-	o.decompose(R1Dish, R2Dish, R3Dish)
-	//logging
-	log.Printf("there are %v orders in the list\n", len(OrderList))
 }
 
 /* TODO: REMOVE the function and do something better
@@ -82,7 +83,7 @@ func orderSender(ol *list.List) {
 		b, ok := json.Marshal(o)
 		o.CookingTime = time.Now().Unix()
 		if ok != nil {
-			log.Fatalln("Could not marshall JSON")
+			log.FatalLn("Could not marshall JSON")
 		}
 		log.Println(o)
 		ol.Remove(top)
