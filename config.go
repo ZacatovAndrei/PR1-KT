@@ -3,8 +3,21 @@ package main
 import "time"
 
 const (
-	TimeUnit                     = 2000 * time.Millisecond
-	CookNumber                   = 1
+	cReset   = "\033[0m"
+	cResetNl = cReset + "\n" // simplifies one line log.printf logs
+	cRed     = "\033[31m"
+	cGreen   = "\033[32m"
+	cYellow  = "\033[33m"
+	cBlue    = "\033[34m"
+	cPurple  = "\033[35m"
+	cCyan    = "\033[36m"
+	cGray    = "\033[37m"
+	cWhite   = "\033[97m"
+)
+
+const (
+	TimeUnit                     = 1000 * time.Millisecond
+	CookNumber                   = 4
 	MaxFoods                     = 6
 	TableNumber                  = 10
 	LocalAddress                 = ":8087"

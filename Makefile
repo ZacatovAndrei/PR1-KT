@@ -5,5 +5,5 @@ build:
 clean: 
 	rm Kitchen
 docker:
-	docker rmi zacatov/pr1kitchen
+	if [ -n $(docker image ls | grep zacatov/pr1kitchen)]; then docker rmi zacatov/pr1kitchen;fi
 	docker build -t "zacatov/pr1kitchen" .

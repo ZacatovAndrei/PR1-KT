@@ -1,11 +1,14 @@
 # TODO LIST
 
-### Main tasks
-- [ ] Parsing the menu file
-- [ ] Implement networking
-- [ ] Implement logging
+### 70%
+
+
+### 40%
+- [x] Parsing the menu file
+- [x] Implement networking
+- [x] Implement logging
   - [x] basic logging on actions
-  - [ ] Writing stats to a CSV file
+  
 ### Finished tasks
 - [x] Reimplement project in Golang (sorta)
 - [x] Implement a way of configuring the menu (via `menu.json`)
@@ -13,6 +16,6 @@
 - [x] Initialise the project
 
 ### Minor tasks
-
-- [ ] Implement a way of configuring the DH parametres
+- [ ] Writing stats to a CSV file
+- [ ] Implement a way of configuring the DH parametres with a .json
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"math"
 )
 
@@ -28,15 +27,5 @@ func (o *Order) assignPriority() {
 	avgComp /= itemLen
 	//TODO: find a better formula for priority calculation
 	tempRank = math.Round(12.0 + 6*(pPriority/5.0) - itemLen - avgComp)
-	log.Printf("Current rank is %v;\n Parametres are %+v %+v %+v", tempRank, pPriority, itemLen, avgComp)
 	o.Priority = int(tempRank)/2 - 1
-}
-
-func (o *Order) decompose() {
-	for _, item := range o.Items {
-		dishRank := CurrentMenu[item].Complexity
-		switch dishRank {
-
-		}
-	}
 }
